@@ -1,5 +1,6 @@
 import { randomUUID } from 'crypto';
 import { db } from '../lib/db';
+import { log } from 'console';
 
 export const ssr = false;
 
@@ -30,5 +31,27 @@ export const actions = {
 			true
 		);
 		console.log(formData.get('type'))
+	},
+	signUp: async ({ request }) => {
+		const formData = await request.formData();
+		await db.push(
+			'/accounts[]',
+			{
+				id: randomUUID(),
+				username: formData.get('username')
+			},
+			true
+		);
+	},
+	signIn: async ({ request }) => {
+		console.log("Sign in getriggerd");
+		const formData = await request.formData();
+		console.log(formData)
+		data = formData.getData("username").value;
+		//console.log(data);
+		//const accounts = db.getData("accounts")
+		//console.log(accounts);
+		//const gevondenUser = accounts.findIndex((user) => user.uuid === data)
+		// console.log(gevondenUser);
 	}
-};
+}
