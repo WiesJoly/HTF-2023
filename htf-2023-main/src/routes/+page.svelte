@@ -10,7 +10,6 @@ let showModal = false;
 		...s,
 		timestamp: formatter.format(new Date(s.timestamp))
 	}))
-
 </script>
 
 
@@ -18,11 +17,13 @@ let showModal = false;
 
 <div class="container">
 	<div class="map-container">
-		<Map markers={sightings.map((s) => ({ id: s.id, location: s.location }))} />
+		<Map markers={sightings.map((s) => ({ id: s.id, location: s.location, title:s.title, description:s.description, type:s.type }))} />
 	</div>
 	<div class="list-container">
-		<h1>Sightings</h1>
-		<button on:click={() => (showModal = true)}> + </button>
+		<div class="menu">
+		<h1 class="HeadingSight">Sightings</h1>
+		<button class="BtnAdd" on:click={() => (showModal = true)}> + </button>
+	</div>
 		<Modal bind:showModal>
 			<h2 slot="header">
 				Add A Sighting
@@ -90,9 +91,9 @@ let showModal = false;
 
 		{#each sightings as sighting}
 		<div class="list-item">
-			<span>{sighting.timestamp} by {sighting.username}</span>
+			<span  class="time">{sighting.timestamp} by <span class="name"><span> {sighting.username}</span></span>
 			<h2>{sighting.title}</h2>
-			<span>{sighting.description}</span>
+			<span class="content">{sighting.description}</span>
 		</div>
 	{/each}
 	</div>
@@ -106,16 +107,47 @@ let showModal = false;
 		display: flex;
 	}
 
+	.menu{
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+	}
+
+	.BtnAdd {
+	  background-color: #04AA6D; /* Green */
+	  border: none;
+	  margin-left: 30px;
+	  color: white;
+	  height: 40px;
+	  padding: 10px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  border-radius: 10px;
+	  font-size: 16px;
+	}
+
+	.HeadingSight {
+	  display: flex;
+	}
+
+
+
 	.map-container {
 		width: 70%;
 		height: 100%;
 	}
 
 	.list-container {
+		display: flex;
 		width: 30%;
 		height: 100%;
 		padding: 1rem 2rem;
 		overflow-y: scroll;
+		position: static;
+		background-color: F5F5F5;;
+		border: 3px grey;
+		border-radius: 20px;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -123,7 +155,21 @@ let showModal = false;
 	}
 
 	.list-item {
+		border-radius: 20px;
 		border: 1px solid black;
 		padding: 1rem;
 	}
+	
+	.time {
+		font-style: italic;
+	}
+
+	.name {
+		font-weight: 200;
+	}
+
+	.content {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
 </style>

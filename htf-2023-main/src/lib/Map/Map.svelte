@@ -1,5 +1,5 @@
 <script>
-	import L from 'leaflet';
+	import L, { marker } from 'leaflet';
 	import Marker from './Marker.svelte';
 	export let markers;
 
@@ -27,7 +27,7 @@
 
 <div use:mapAction class="map">
 	{#each markers as marker (marker.id)}
-		<Marker latlng={marker.location} {map} />
+		<Marker latlng={marker.location} title={marker.title} description={marker.description} type={marker.type} {map} />
 	{/each}
 </div>
 

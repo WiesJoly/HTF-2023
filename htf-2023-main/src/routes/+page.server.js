@@ -29,6 +29,5 @@ export const actions = {
 			},
 			true
 		);
-		console.log(formData.get('type'))
 	}
 };
