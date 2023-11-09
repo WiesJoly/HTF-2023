@@ -33,6 +33,8 @@
 	.title {
 		font-size: 2rem;
 		font-weight: bold;
+		color: white;
+
 	}
 	.container {
 		height: calc(100% - var(--nav-height));

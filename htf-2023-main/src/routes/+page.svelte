@@ -68,6 +68,9 @@ let showModal = false;
 				<label>
 					<input  type="radio" name="type" value=2 />Animal
 				</label>
+				<label>
+					<input  type="radio" name="type" value=0 />Other
+				</label>
 			</p>
 			<p>
 				<label>
