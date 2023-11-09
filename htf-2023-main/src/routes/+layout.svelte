@@ -1,5 +1,5 @@
 <script>
-	import logo from '$lib/assets/jhl3.jpeg';
+	import logo from '$lib/assets/jhl.jpeg';
 </script>
 
 <nav>
@@ -19,6 +19,7 @@
 		height: var(--nav-height);
 		border-bottom: var(--border-width) solid #1c4532;
 		display: flex;
+		background-color: #282830;
 		align-items: center;
 		padding-inline: 2rem;
 	}

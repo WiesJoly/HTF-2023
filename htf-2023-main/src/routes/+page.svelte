@@ -34,7 +34,8 @@ let showModal = false;
 				<label>
 					Title Sighting:
 					<input
-						name="title"	
+						name="title"
+						class="form_input"	
 						autocomplete="off"
 					/>
 				</label>
@@ -43,7 +44,8 @@ let showModal = false;
 				<label>
 					Desc Sighting:
 					<input
-						name="description"	
+						name="description"
+						class="form_input"
 						autocomplete="off"
 					/>
 				</label>
@@ -53,6 +55,7 @@ let showModal = false;
 					Username:
 					<input
 						name="username"	
+						class="form_input"
 						autocomplete="off"
 					/>
 				</label>
@@ -63,7 +66,7 @@ let showModal = false;
 					<input type="radio" name="type" value=1 checked="checked" /> Tree
 				</label>
 				<label>
-					<input type="radio" name="type" value=2 />Animal
+					<input  type="radio" name="type" value=2 />Animal
 				</label>
 			</p>
 			<p>
@@ -71,6 +74,7 @@ let showModal = false;
 					Latitude:
 					<input
 						name="lat"
+						class="form_input"
 						autocomplete="off"
 					/>
 				</label>
@@ -80,6 +84,7 @@ let showModal = false;
 					Longitude:
 					<input
 						name="long"
+						class="form_input"
 						autocomplete="off"
 					/>
 				</label>
@@ -105,6 +110,8 @@ let showModal = false;
 		width: 100%;
 		height: 100%;
 		display: flex;
+		background-color: #282830;
+		color: white;
 	}
 
 	.menu{
@@ -132,6 +139,15 @@ let showModal = false;
 	}
 
 
+	.form_input {
+      width: clamp(120px, 50vw, 420px);
+      height: 2.5rem;
+      padding: 0 1.25rem;
+      border: 1px solid black;
+      border-radius: 2px;
+      margin: 0.625rem auto;
+      transition: all 250ms;
+	}
 
 	.map-container {
 		width: 70%;
@@ -151,12 +167,13 @@ let showModal = false;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		border-left: 1px solid black;
+		;
 	}
 
 	.list-item {
+
 		border-radius: 20px;
-		border: 1px solid black;
+		border: 1px solid white;
 		padding: 1rem;
 	}
 	
