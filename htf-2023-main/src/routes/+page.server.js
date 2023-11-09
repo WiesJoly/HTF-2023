@@ -17,16 +17,18 @@ export const actions = {
 			'/sightings[]',
 			{
 				id: randomUUID(),
-				username: 'NatureExplorer123',
+				username: formData.get('username'),
 				location: {
-					latitude: 51.1901512,
-					longitude: 4.4249487
+					latitude: formData.get('lat'),
+					longitude: formData.get('long'),
 				},
+				type: formData.get('type'),
 				timestamp: new Date().toISOString(),
 				title: formData.get('title'),
 				description: formData.get('description')
 			},
 			true
 		);
+		console.log(formData.get('type'))
 	}
 };

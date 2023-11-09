@@ -1,11 +1,16 @@
 <script>
 	const formatter = Intl.DateTimeFormat('nl-BE', { dateStyle: 'medium', timeStyle: 'short' });
 	import Map from '$lib/Map/Map.svelte';
+	import { enhance } from '$app/forms';
 	export let data;
+	import Modal from './Modal.svelte';
+
+let showModal = false;
 	$: sightings = data.sightings.map((s) => ({
 		...s,
 		timestamp: formatter.format(new Date(s.timestamp))
 	}))
+
 </script>
 
 
@@ -17,34 +22,82 @@
 	</div>
 	<div class="list-container">
 		<h1>Sightings</h1>
-		<form method="POST" action="?/add">
+		<button on:click={() => (showModal = true)}> + </button>
+		<Modal bind:showModal>
+			<h2 slot="header">
+				Add A Sighting
+			</h2>
+		
+			<form method="POST" action="?/add" use:enhance>
+				<p>
+				<label>
+					Title Sighting:
+					<input
+						name="title"	
+						autocomplete="off"
+					/>
+				</label>
+			</p>
 			<p>
-			<label>
-				Title seeing:
-				<input
-					name="title"	
-					autocomplete="off"
-				/>
-			</label>
-		</p>
-			<label>
-				Desc seeing:
-				<input
-				name="description"
-				autocomplete="off"
-			/>
-			</label>
-			<button formaction="?/add">Register</button>
-		</form>
+				<label>
+					Desc Sighting:
+					<input
+						name="description"	
+						autocomplete="off"
+					/>
+				</label>
+			</p>
+			<p>
+				<label>
+					Username:
+					<input
+						name="username"	
+						autocomplete="off"
+					/>
+				</label>
+			</p>
+			<p>
+				<label>
+					Type:
+					<input type="radio" name="type" value=1 checked="checked" /> Tree
+				</label>
+				<label>
+					<input type="radio" name="type" value=2 />Animal
+				</label>
+			</p>
+			<p>
+				<label>
+					Latitude:
+					<input
+						name="lat"
+						autocomplete="off"
+					/>
+				</label>
+			</p>
+			<p>
+				<label>
+					Longitude:
+					<input
+						name="long"
+						autocomplete="off"
+					/>
+				</label>
+			</p>
+				<button formaction="?/add">Add Sighting</button>
+			</form>
+		</Modal>
+
+
 		{#each sightings as sighting}
-			<div class="list-item">
-				<span>{sighting.timestamp} by {sighting.username}</span>
-				<h2>{sighting.title}</h2>
-				<span>{sighting.description}</span>
-			</div>
-		{/each}
+		<div class="list-item">
+			<span>{sighting.timestamp} by {sighting.username}</span>
+			<h2>{sighting.title}</h2>
+			<span>{sighting.description}</span>
+		</div>
+	{/each}
 	</div>
 </div>
+
 
 <style>
 	.container {
