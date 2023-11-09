@@ -5,8 +5,11 @@
 	$: sightings = data.sightings.map((s) => ({
 		...s,
 		timestamp: formatter.format(new Date(s.timestamp))
-	}));
+	}))
 </script>
+
+
+
 
 <div class="container">
 	<div class="map-container">
@@ -14,6 +17,25 @@
 	</div>
 	<div class="list-container">
 		<h1>Sightings</h1>
+		<form method="POST" action="?/add">
+			<p>
+			<label>
+				Title seeing:
+				<input
+					name="title"	
+					autocomplete="off"
+				/>
+			</label>
+		</p>
+			<label>
+				Desc seeing:
+				<input
+				name="description"
+				autocomplete="off"
+			/>
+			</label>
+			<button formaction="?/add">Register</button>
+		</form>
 		{#each sightings as sighting}
 			<div class="list-item">
 				<span>{sighting.timestamp} by {sighting.username}</span>
